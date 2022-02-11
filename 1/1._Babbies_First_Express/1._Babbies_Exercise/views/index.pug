@@ -1,0 +1,102 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
+
+        link(href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180")
+        link(type="image/png" href="/favicon-32x32.png" rel="icon" sizes="32x32")
+        link(type="image/png" href="/favicon-16x16.png" rel="icon" sizes="16x16")
+        link(href="/site.webmanifest" rel="manifest")
+        title Movies REST API
+    body.m-0.p-0
+        h1.h2 Babbies Exercies - Movies REST API
+        h2.h4 Usage and general information is provided for each action:
+
+        section.modal-content.container.m-5.p-5
+            .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
+                form(method='GET' action='/allMovies')
+                    legend
+                        | Usage: &quot;base-url&quot;/allMovies
+                        br
+                        | Method: GET
+                        br
+                        | Description: Provides the entire movies list
+                    button.btn.btn-primary(type='submit') GET All Movies
+
+            .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
+                form(method='GET' action='/movie')
+                    legend
+                        | Usage: &quot;base-url&quot;/movie?id={id}
+                        br
+                        | Method: GET
+                        br
+                        | Description: Provides a specific movie from the list
+                    .m-auto.mb-3
+                        label.form-label(for='getSpecMovie') Select movie ID
+                        input#getSpecMovie.form-control(name='id' type='number' min='0' max=`${maxID}` placeholder="Movie ID..." required)
+                    button.btn.btn-primary(type='submit') GET Movie
+
+            .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
+                form(method='POST' action='/movies/add')
+                    legend
+                        | Usage: &quot;base-url&quot;/movies/add?title={title}?year={year}?category={category}?rating={rating}
+                        br
+                        | Method: POST
+                        br
+                        | Description: Adds a movie to the list
+                    .m-auto.mb-3
+                        label.form-label(for='postTitle') Input Movie Title
+                        input#postTitle.form-control(name='title' type='text' placeholder='Rick and Morty...' required)
+                    .m-auto.mb-3
+                        label.form-label(for='postYear') Input Movie Year
+                        input#postYear.form-control(name='year' type='number' placeholder='2019...' required)
+                    .m-auto.mb-3
+                        label.form-label(for='postCategory') Input Movie Category
+                        input#postCategory.form-control(name='category' type='text' placeholder='Quirky...' required)
+                    .m-auto.mb-3
+                        label.form-label(for='postRating') Input Movie Rating
+                        input#postRating.form-control(name='rating' type='text' placeholder='16+...' required)
+                    button.btn.btn-primary(type='submit') POST Movie
+
+            .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
+                form(method='PUT' action='/movies/edit')
+                    legend
+                        | Usage: &quot;base-url&quot;/movies/edit?id={id}?title={title}?year={year}?category={category}?rating={rating}
+                        br
+                        | Method: POST
+                        br
+                        | Description: Modify the information of a specific movie in the list
+                    .m-auto.mb-3
+                        label.form-label(for='putSpecMovie') Select movie ID
+                        input#putSpecMovie.form-control(name='id' type='number' min='0' max=`${maxID}` placeholder="69..." required)
+                    .m-auto.mb-3
+                        label.form-label(for='putTitle') Input Movie Title
+                        input#putTitle.form-control(name='title' type='text' placeholder='Rick and Morty...' required)
+                    .m-auto.mb-3
+                        label.form-label(for='putYear') Input Movie Year
+                        input#putYear.form-control(name='year' type='number' placeholder='2019...' required)
+                    .m-auto.mb-3
+                        label.form-label(for='putCategory') Input Movie Category
+                        input#putCategory.form-control(name='category' type='text' placeholder='Quirky...' required)
+                    .m-auto.mb-3
+                        label.form-label(for='putRating') Input Movie Rating
+                        input#putRating.form-control(name='rating' type='text' placeholder='16+...' required)
+                    button.btn.btn-primary(type='submit') PUT Movie
+
+            .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
+                form(method='DELETE' action='/movies/delete')
+                    legend
+                        | Usage: &quot;base-url&quot;/movies/delete?id={id}
+                        br
+                        | Method: DELETE
+                        br
+                        | Description: Removes a movie from the list
+                    .m-auto.mb-3
+                        label.form-label(for='deleteSpecMovie') Select movie ID
+                        input#deleteSpecMovie.form-control(name='id' type='number' min='0' max=`${maxID}` placeholder="Movie ID..." required)
+                    button.btn.btn-primary(type='submit') DELETE Movie
+
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
