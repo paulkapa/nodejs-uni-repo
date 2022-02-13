@@ -12,14 +12,34 @@ html(lang="en")
         link(href="/site.webmanifest" rel="manifest")
         title Movies REST API
     body.m-0.p-0
-        h1.h2 Babbies Exercies - Movies REST API
-        h2.h4 Usage and general information is provided for each action:
+        h1.h2.m-5 Babbies Exercies - CRUD-able REST API
+        h2.h4.m-2 Usage and general information is provided for each action:
 
         section.modal-content.container.m-5.p-5
             .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
-                form(method='GET' action='/allMovies')
+                form(method='GET' action='/about')
                     legend
-                        | Usage: &quot;base-url&quot;/allMovies
+                        | Usage: &quot;base-url&quot;/about
+                        br
+                        | Method: GET
+                        br
+                        | Description: Provides basic information about the API in a json format
+                    button.btn.btn-primary(type='submit') About
+
+            .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
+                form(method='GET' action='/about/web-gui')
+                    legend
+                        | Usage: &quot;base-url&quot;/about/web-gui
+                        br
+                        | Method: GET
+                        br
+                        | Description: &#40;this page&#41; Render a view providing a GUI to allow the user to access the functionality in a browser
+                    button.btn.btn-primary(type='submit') About - Web-GUI
+
+            .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
+                form(method='GET' action='/movies')
+                    legend
+                        | Usage: &quot;base-url&quot;/movies
                         br
                         | Method: GET
                         br
@@ -29,11 +49,12 @@ html(lang="en")
             .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
                 form(method='GET' action='/movie')
                     legend
-                        | Usage: &quot;base-url&quot;/movie?id={id}
-                        br
+                        | Usage: &quot;base-url&quot;/movie
+                        ol Parameters:
+                            li id - number, required
                         | Method: GET
                         br
-                        | Description: Provides a specific movie from the list
+                        | Description: Provides a specific movie from the list &#40;&quot;id&quot; is required&#41;
                     .m-auto.mb-3
                         label.form-label(for='getSpecMovie') Select movie ID
                         input#getSpecMovie.form-control(name='id' type='number' min='0' max=`${maxID}` placeholder="Movie ID..." required)
@@ -42,17 +63,22 @@ html(lang="en")
             .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
                 form(method='POST' action='/movies/add')
                     legend
-                        | Usage: &quot;base-url&quot;/movies/add?title={title}?year={year}?category={category}?rating={rating}
-                        br
+                        | Usage: &quot;base-url&quot;/movies/add
+                        ol Parameters:
+                            li id - number, required
+                            li title - string, required
+                            li year - number, required
+                            li category - string, required
+                            li rating - string, required
                         | Method: POST
                         br
-                        | Description: Adds a movie to the list
+                        | Description: Adds a movie to the list &#40;all parameters are required&#41;
                     .m-auto.mb-3
                         label.form-label(for='postTitle') Input Movie Title
                         input#postTitle.form-control(name='title' type='text' placeholder='Rick and Morty...' required)
                     .m-auto.mb-3
                         label.form-label(for='postYear') Input Movie Year
-                        input#postYear.form-control(name='year' type='number' placeholder='2019...' required)
+                        input#postYear.form-control(name='year' type='number' min=`1900` max=`${maxYear}` placeholder='2019...' required)
                     .m-auto.mb-3
                         label.form-label(for='postCategory') Input Movie Category
                         input#postCategory.form-control(name='category' type='text' placeholder='Quirky...' required)
@@ -64,36 +90,46 @@ html(lang="en")
             .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
                 form(method='PUT' action='/movies/edit')
                     legend
-                        | Usage: &quot;base-url&quot;/movies/edit?id={id}?title={title}?year={year}?category={category}?rating={rating}
-                        br
-                        | Method: POST
-                        br
-                        | Description: Modify the information of a specific movie in the list
+                        | Usage: &quot;base-url&quot;/movies/edit
+                        ol Parameters:
+                            li id - number, required
+                            li title - string
+                            li year - number
+                            li category - string
+                            li rating - string
+                        | Method: PUT
+                        ol
+                            li defaults to GET in HTML form
+                            li requires the server to rute specific POST requests to PUT method if to be called from a POST HTML form
+                        | Description: Modify the information of a specific movie in the list &#40;&quot;id&quot; is required&#41;
                     .m-auto.mb-3
                         label.form-label(for='putSpecMovie') Select movie ID
                         input#putSpecMovie.form-control(name='id' type='number' min='0' max=`${maxID}` placeholder="69..." required)
                     .m-auto.mb-3
                         label.form-label(for='putTitle') Input Movie Title
-                        input#putTitle.form-control(name='title' type='text' placeholder='Rick and Morty...' required)
+                        input#putTitle.form-control(name='title' type='text' placeholder='Rick and Morty...')
                     .m-auto.mb-3
                         label.form-label(for='putYear') Input Movie Year
-                        input#putYear.form-control(name='year' type='number' placeholder='2019...' required)
+                        input#putYear.form-control(name='year' type='number' min=`1900` max=`${maxYear}` placeholder='2019...')
                     .m-auto.mb-3
                         label.form-label(for='putCategory') Input Movie Category
-                        input#putCategory.form-control(name='category' type='text' placeholder='Quirky...' required)
+                        input#putCategory.form-control(name='category' type='text' placeholder='Quirky...')
                     .m-auto.mb-3
                         label.form-label(for='putRating') Input Movie Rating
-                        input#putRating.form-control(name='rating' type='text' placeholder='16+...' required)
+                        input#putRating.form-control(name='rating' type='text' placeholder='16+...')
                     button.btn.btn-primary(type='submit') PUT Movie
 
             .modal-content.row.align-items-center.justify-content-center.align-self-center.m-5.p-5
                 form(method='DELETE' action='/movies/delete')
                     legend
-                        | Usage: &quot;base-url&quot;/movies/delete?id={id}
-                        br
+                        | Usage: &quot;base-url&quot;/movies/delete
+                        ol Parameters:
+                            li id - number, required
                         | Method: DELETE
-                        br
-                        | Description: Removes a movie from the list
+                        ol
+                            li defaults to GET in HTML form
+                            li requires the server to rute specific POST requests to DELETE method if to be called from a POST HTML form
+                        | Description: Removes a movie from the list &#40;&quot;id&quot; is required&#41;
                     .m-auto.mb-3
                         label.form-label(for='deleteSpecMovie') Select movie ID
                         input#deleteSpecMovie.form-control(name='id' type='number' min='0' max=`${maxID}` placeholder="Movie ID..." required)
