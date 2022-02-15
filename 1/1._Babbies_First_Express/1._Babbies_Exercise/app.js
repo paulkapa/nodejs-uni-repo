@@ -182,7 +182,7 @@ app.get("/", (req, res) => {
  */
 app.get("/about", (req, res) => {
     console.log(`${colorText("GET /about", "magenta")}`);
-    res.end(JSON.stringify({ name: "Babbies Exercise", description: "CRUD-able REST API", actions: { GET: ["/ => /about/web", "/about", "/about/web", "/movies", "/movie?id={!}"], POST: "/movies/add?title={!}?year={!}?category={!}?rating={!}", PUT: "/movies/edit?id={!}?title={}?year={}?category={}?rating={}", DELETE: "/movies/delete?id={!}" }, about: "/about/web-gui" }));
+    res.end(JSON.stringify({ name: "Babbies Exercise", description: "CRUD-able REST API", actions: { GET: ["/ => /about/web", "/about", "/about/web", "/movies", "/movie?id={!}"], POST: "/movies/add?title={!}&year={!}&category={!}&rating={!}", PUT: "/movies/edit?id={!}&title={}&year={}&category={}&rating={}", DELETE: "/movies/delete?id={!}" }, about: "/about/web-gui" }));
 });
 
 /**
@@ -215,15 +215,15 @@ app.get("/movie", (req, res) => {
  */
 app.post("/movies/add", (req, res) => {
     if (!noGood.includes(req.query.title)) {
-        console.log(`${colorText("POST /movies/add", "magenta")}?title=${String(req.query.title)}?year=${Number(req.query.year)}?category=${String(req.query.category)}?rating=${String(req.query.rating)}`);
+        console.log(`${colorText("POST (query) /movies/add", "magenta")}?title=${String(req.query.title)}?year=${Number(req.query.year)}?category=${String(req.query.category)}?rating=${String(req.query.rating)}`);
         addMovie(new Movie(0, String(req.query.title), Number(req.query.year), String(req.query.category), String(req.query.rating)));
         res.send(toJSON(movieMap.size - 1));
     } else if (!noGood.includes(req.body.title)) {
-        console.log(`${colorText("POST /movies/add", "magenta")}?title=${String(req.body.title)}?year=${Number(req.body.year)}?category=${String(req.body.category)}?rating=${String(req.body.rating)}`);
+        console.log(`${colorText("POST (body) /movies/add", "magenta")}?title=${String(req.body.title)}?year=${Number(req.body.year)}?category=${String(req.body.category)}?rating=${String(req.body.rating)}`);
         addMovie(new Movie(0, String(req.body.title), Number(req.body.year), String(req.body.category), String(req.body.rating)));
         res.send(toJSON(movieMap.size - 1));
     } else {
-        res.end("Cannot read post data...");
+        res.end(JSON.stringify({ status: `Cannot read post data...` }));
     }
 });
 
@@ -249,7 +249,8 @@ app.delete("/movies/delete", (req, res) => {
         default: {
             res.end(JSON.stringify({
                 status: `Error occurered... If you try to DELETE a movie, check again if the id exists in database`
-            })); }
+            }));
+        }
     }
 });
 

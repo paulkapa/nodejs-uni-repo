@@ -17,7 +17,16 @@ app.post("/", (res, req) => {
 })
 
 app.post("/about", (res, req) => {
-    
-})
+
+});
+
+
+app.get("/libraries", (req, res) => {
+    res.send(req.query);
+});
+
+app.get("/aboutclient/:name", (req, res) => {
+    res.send({ greeting: `Hello There ${req.params.name}` });
+});
 
 app.listen(8080);
