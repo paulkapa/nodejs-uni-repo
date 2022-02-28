@@ -1,10 +1,14 @@
 const express = require(`express`);
 const app = express();
 
-// http://api.weatherstack.com/current?access_key=361bbf753b816d01b117fffca0e5ed2b&query=Copenhagen
+app.use(express.static("public"));
 
 app.get("/weather", (req, res) => {
-    res.sendFile(`${__dirname}\\public\\weather.html`);
+    res.sendFile(`${__dirname}/public/weather.html`);
+});
+
+app.get("/", (req, res) => {
+    res.sendFile(`${__dirname}/public/frontpage/frontpage.html`);
 });
 
 app.listen(8080, () => {

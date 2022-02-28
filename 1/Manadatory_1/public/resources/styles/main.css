@@ -1,0 +1,132 @@
+*:root {
+    --color-1: rgba(255, 0, 0);
+    --color-2: rgba(0, 128, 0);
+    --color-3: rgba(0, 0, 255);
+    --color-4: rgba(255, 166, 0);
+    --color-5: rgba(255, 0, 255);
+    --color-6: rgba(0, 255, 255);
+    --color-transparent: transparent;
+}
+
+@keyframes alternate-bg {
+    0% {background-color: var(--color-1);}
+    20% {background-color: var(--color-2);}
+    40% {background-color: var(--color-3);}
+    60% {background-color: var(--color-4);}
+    80% {background-color: var(--color-5);}
+    100% {background-color: var(--color-6);}
+}
+
+body {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    text-align: justify;
+    text-decoration: none;
+    background-color: darkslategrey;
+    background-size: cover;
+}
+
+a {
+    color: cornflowerblue;
+}
+
+header {
+    background-color: whitesmoke;
+}
+
+section {
+    position: relative;
+    left: 0;
+    margin: 2vw auto;
+    width: 100vw;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: 100vw;
+    background-color: whitesmoke;
+}
+
+footer > a {
+    position: fixed;
+    left: 0;
+}
+
+.LED-light {
+    width: 3em;
+    height: 16em;
+    margin: 0 auto;
+    filter: blur(1.2em);
+}.LED-1 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 0ms infinite alternate-reverse none;
+}.LED-2 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 5ms infinite alternate-reverse none;
+}.LED-3 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 10ms infinite alternate-reverse none;
+}.LED-4 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 15ms infinite alternate-reverse none;
+}.LED-5 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 20ms infinite alternate-reverse none;
+}.LED-6 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
+}.LED-7 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
+}.LED-8 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
+}.LED-9 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
+}
+.LED-10 {
+    background-color: var(--color-transparent);
+    height: calc(16em/10);
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
+}

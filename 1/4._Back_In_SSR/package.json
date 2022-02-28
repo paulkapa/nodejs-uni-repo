@@ -1,0 +1,26 @@
+{
+  "name": "4._back_in_ssr",
+  "version": "1.0.0",
+  "description": "Server side rendering recap",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulkapa/nodejs-uni-repo.git"
+  },
+  "keywords": [
+    "SSR",
+    "express"
+  ],
+  "author": "Paul Capatina-Voila",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulkapa/nodejs-uni-repo/issues"
+  },
+  "homepage": "https://github.com/paulkapa/nodejs-uni-repo#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
