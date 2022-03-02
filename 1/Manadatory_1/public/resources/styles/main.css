@@ -17,12 +17,22 @@
     100% {background-color: var(--color-6);}
 }
 
+body::-webkit-scrollbar {display: none;}
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
 body {
     position: relative;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    margin: 0 auto;
+    /*font-family: 'Courier New', Courier, monospace;*/
     font-size: 16px;
     text-align: justify;
     text-decoration: none;
@@ -31,102 +41,39 @@ body {
 }
 
 a {
-    color: cornflowerblue;
+    color: #00B7FF;
 }
 
-header {
-    background-color: whitesmoke;
+.nav-c {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 section {
     position: relative;
-    left: 0;
-    margin: 2vw auto;
+    margin: 2vh auto;
     width: 100vw;
-}
-
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    margin: 0 auto;
-    width: 100vw;
-    background-color: whitesmoke;
-}
-
-footer > a {
-    position: fixed;
-    left: 0;
 }
 
 .LED-light {
     width: 3em;
     height: 16em;
     margin: 0 auto;
-    filter: blur(1.2em);
-}.LED-1 {
+}.LED-1, .LED-2, .LED-3, .LED-4, .LED-5, .LED-6, .LED-7, .LED-8, .LED-9, .LED-10 {
     background-color: var(--color-transparent);
     height: calc(16em/10);
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 0ms infinite alternate-reverse none;
-}.LED-2 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 5ms infinite alternate-reverse none;
-}.LED-3 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 10ms infinite alternate-reverse none;
-}.LED-4 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 15ms infinite alternate-reverse none;
-}.LED-5 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 20ms infinite alternate-reverse none;
-}.LED-6 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
-}.LED-7 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
-}.LED-8 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
-}.LED-9 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
+    animation: alternate-bg 2s linear 0ms infinite alternate-reverse none;
+    filter: blur(0.85em);
 }
-.LED-10 {
-    background-color: var(--color-transparent);
-    height: calc(16em/10);
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    animation: alternate-bg 3s linear 25ms infinite alternate-reverse none;
+
+@media only screen and (min-width: 1280px) {
+    section > * {
+        max-width: 80vw;
+        margin: 0 auto;
+    }
 }
