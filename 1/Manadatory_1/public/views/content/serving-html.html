@@ -1,14 +1,30 @@
-<section class="modal-content">
-    <h1 class="h2 p-2">Serving HTML</h1>
-    <P class="p-2">
-        - Loops
-        - Nodemon
-        - Sending Data
-        - Pure Data CRUDable REST API
-        - Can argue about why immutability and a functional approach to loops are preferred and will always choose the correct one.
-        - Knows when and how to use Nodemon.
-        - Knows how to send data in a GET request and how to receive it in Express.
-        - Can implement a REST API, consider efficiency while doing so and enforce proper conventions.
-        - Can write a fetch request in the front-end by heart.
+<section class="section-content modal-content">
+    <h1>Serving HTML</h1>
+    <p>
+        There are a couple of ways to send data to the client. It can either be text, json, or even files. The HTML files can be sent using the sendFile() method or can be
+        converted to a string of text and sent using the send() method. The later can be used for sending all text and json content.
     </p>
+    <ol>
+        <li>
+            Sending HTML as a file is as easy as writing:
+            <br><img src="../../resources/media/servehtml.png" alt="" srcset="">
+        </li>
+        <li>
+            Sending HTML as string of text is a bit more complex, but offers more customization of the actual content
+            <ul>
+                <li>
+                    The easy way is just:
+                    <br><img src="../../resources/media/servinghtml1.png" alt="" srcset="">
+                </li>
+                <li>
+                    The complex way...
+                    <br><img src="../../resources/media/servinghtml2.png" alt="" srcset="">
+                    <p>
+                        First of all, <span class="c-2">"fs"</span> module needs to be imported. It will provide the readFileSync() method that can converts any file into a string
+                        of text. Then the HTML file needs to be saved in a variable, and send as a response.
+                    </p>
+                </li>
+            </ul>
+        </li>
+    </ol>
 </section>

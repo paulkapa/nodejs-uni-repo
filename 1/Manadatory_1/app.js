@@ -79,7 +79,9 @@ function buildErrorPage(error_message) {
     let footer_rendered = footer.replace("%%NEXT_SECTION%%", __index_loc)
         .replace("%%NEXT_SECTION_TITLE%%", __index_title)
         .replace("%%PREV_SECTION%%", last_page)
-        .replace("%%PREV_SECTION_TITLE%%", last_page_title);
+        .replace("%%PREV_SECTION_TITLE%%", last_page_title)
+        .replace("%%LAST_SECTION_TITLE%%", last_page_title)
+        .replace("%%LAST_SECTION%%", last_page);
     return doc_rendered + nav + error_rendered + footer_rendered;
 }
 
@@ -100,8 +102,13 @@ app.get(__ww_news_loc, (req, res) => {
         last_page = __ww_news_loc;
         last_page_title = __ww_news_title;
     } catch (e) {
+        /**
+         * The "HTTP 418 I'm a teapot" client error response code indicates that the server refuses to brew coffee because it is, permanently, a teapot.
+         * A combined coffee/tea pot that is temporarily out of coffee should instead return 503.
+         * This error is a reference to Hyper Text Coffee Pot Control Protocol defined in April Fools' jokes in 1998 and 2014.
+         */
         res.status(418);
-        res.send(buildErrorPage(e));
+        res.send(buildErrorPage(e + "418 I'm a teapot"));
     }
 });
 

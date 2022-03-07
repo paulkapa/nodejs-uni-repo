@@ -1,11 +1,26 @@
-<section class="modal-content">
-    <h1 class="h2 p-2">SSR (Server Side Rendering)</h1>
-    <P class="p-2">
-        - Pure Data CRUDable REST API - Part II - Done!
-        - Serving Static Assets in Express
-        - One way to do SSR in Express.
-        - Can blindly create a full CRUDable REST API that follows the good form we've gone through and given enough time but no possibility to look up a solution.
-        - Knows what Serving Static Files in Express means and why it is done.
-        - Understand why the way we've done SSR works, is able to refactor existing code to become SSR and is able to implement a SSR project
+<section class="section-content modal-content">
+    <h1>SSR (Server Side Rendering)</h1>
+    <p>
+        Server Side Rendering focuses on letting the client just display the content and making the server do all the processing to get that content ready. This relates to the
+        complex way of serving HTML files as a string of text presented in the previous section.
+    </p>
+    <P>
+        SSR would also allow the server to dynamically change values displayed on the client side. This can be done by inserting special templates in the HTML files so that the
+        server can replace them specifically with some other data. Another thing provided by SSR is the possibility of storing the parts that repeat multiple times on different
+        webpages only once, as fragments, and combining only the fragments you need to be displayed for the response.
+    </P>
+    <p>
+        Examples of fragmenting files and building pages with different fragments:
+        <br><img src="../../resources/media/ssr1.png" alt="" srcset="">
+        <img src="../../resources/media/ssr2.png" alt="" srcset="">
+        <br><img src="../../resources/media/ssr3.png" alt="" srcset="">
+    <p>
+        In the code above, all the different fragments and sections that are available to be displayed in a web page are saved as string.
+    </p>
+    <br><img src="../../resources/media/ssr4.png" alt="" srcset="">
+    <p>
+        In the code above, there are 3 different ways of building a web page defined. In all of them, special templates found in the string of text are replaced with dynamic
+        values.
+    </p>
     </p>
 </section>

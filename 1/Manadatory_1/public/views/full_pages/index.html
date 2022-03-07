@@ -3,8 +3,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script src="https://kit.fontawesome.com/3b3b81e1a6.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -15,53 +14,114 @@
         <title>%%DOCUMENT_TITLE%%</title>
     </head>
 
-    <body class="user-select-none">
+    <body>
+        <!-- Body background video -->
+        <video class="video-bg" autoplay loop muted>
+            <source src="../../resources/media/blue.mp4" type="video/mp4">
+        </video>
 
-        <section class="modal-content">
-            <h1 class="h2 text-center">
-                <a type="button" class="text-muted text-decoration-none" data-bs-toggle="collapse" data-bs-target="#nav-c" aria-controls="nav-c">
-                    <span>
-                        <em class="fa-solid fa-bars"></em>
-                    </span>
-                    Welcome to KEA - Full Stack Node.js
-                </a>
-            </h1>
-            <header id="nav-c" class="nav-c collapse flex-wrap">
-                <a class="nav-link btn btn-toolbar" href="/">Home</a>
-                <a class="nav-link btn" href="/introduction">Introduction</a>
-                <a class="nav-link btn" href="/express-server">Express Server</a>
-                <a class="nav-link btn" href="/serving-html">Serving HTML</a>
-                <a class="nav-link btn" href="/ssr">SSR</a>
-                <a class="nav-link btn" href="/about">About</a>
-                <a class="nav-link btn" href="/about-me">Author</a>
-                <a class="nav-link btn" href="/academic">Academic</a>
-                <a class="nav-link btn" href="/glossary">Glossary</a>
-                <a class="nav-link btn" href="/copyright">Copyright</a>
+        <!-- Top Section - Header and Navigation -->
+        <section class="section-top modal-content">
+            <!-- Top Section background video -->
+            <video class="video-bg" autoplay loop muted>
+                <source src="../../resources/media/color.mp4" type="video/mp4">
+            </video>
+
+            <!-- Site branding (Node.js Express server initialization code) -->
+            <div id="nav-brand" class="nav-brand navbar-brand collapse multi-collapse">
+                <span class="line0">Node <em class="fa-brands fa-node-js"></em></span><br>
+                <span class="line1">const express = require("express");</span><br>
+                <span class="line2">const app = express();</span><br>
+                <span class="line2">const PORT = process.env.PORT || 3000;</span><br>
+                <span class="line3">app.listen(PORT, () => console.log("Yep"));</span>
+            </div>
+
+            <!-- Header -->
+            <header class="modal-header row flex-row border-0">
+                <!-- Header heading and navigation toggle button -->
+                <h1 class="nav-text navbar-text">
+                    <a type="button" title="Toggle Navigation" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-controls="nav-brand nav-external">
+                        <em class="nav-btn fa-solid fa-diamond-turn-right"></em>
+                        Full Stack Node.js
+                        <em class="fa-solid fa-at text-success"></em> KEA
+                        <em class="fa-solid fa-exclamation text-success"></em>
+                    </a>
+                </h1>
+
+                <!-- Expandable external navigation and content -->
+                <nav id="nav-external" class="nav-external nav-justified collapse multi-collapse">
+                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/introduction">Introduction</a>
+                    <a class="nav-link" href="/express-server">Express Server</a>
+                    <a class="nav-link" href="/serving-html">Serving HTML</a>
+                    <a class="nav-link" href="/ssr">SSR</a>
+                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/about-me">Author</a>
+                    <a class="nav-link" href="/academic">Academic</a>
+                    <a class="nav-link" href="/glossary">Glossary</a>
+                    <a class="nav-link" href="/copyright">Copyright</a>
+                </nav>
             </header>
         </section>
 
-        <section class="modal-content">
-            <!-- Content -->
+        <!-- Content Section - Page Content -->
+        <section class="section-content modal-content">
+            <p>
+                At KEA, the Copenhagen School of Design and Technology (<a href="/academic">Københavns Erhvervsakademi</a>), you may find yourself studying "Node.js"...
+                This site has a short presentation of what would happen if <u>you</u> would find yourself in this situation.
+            </p>
+
+            <h2>Important Information</h2>
+            <p>
+                This site is made using Node.js. There is a complete description, in the <a href="/about">About</a> section, of the process I (the <a href="/about-me">author</a>)
+                went through to achieve this undisputable perfection.
+                <br>
+                You may navigate between sections using the dropdown navigation located at the top of the page, or you may use the buttons in the footer to go through sections
+                in
+                order, or to go straight to the last section visited.
+            </p>
+
+            <h2>Node.js - what is it and what it does</h2>
+            <p>Node.js is a JavaScript runtime powered by the Google V8 Engine. Is it a car then? Not at all! It has similarities to a car, in that it drives the code
+                you write to a compiled state and allows it to achieve its functionality. It actually works more like a road system, having defined rules on how vehicles can
+                get
+                from point A to point B, but not implying that only specific people can drive the cars, or that specific cars can use the roads.
+            </p>
+            <P>
+                This runtime is used primarily for server programming. Servers are individual computers, or a network of computers that provide access to resources. It can
+                provide
+                access to a website, as it is the case here, or to different other types of data and even files, that other computers can access through a network.
+            </P>
+
+            <h2>Is Node.js worth it?</h2>
+            <p>
+                First of all, Node.js is a free tool! On top of that, it also has an extensive library of modules that increases the developer's capability to design and write
+                fast and efficient code wich leads to an application with lots of features. Find out more about Node.js and how to set-up an Express server in the next
+                sections.
+            </p>
         </section>
 
-        <section class="modal-content">
-            <footer class="modal-footer">
-                <div class="m-auto">
-                    <a class="position-relative d-inline m-auto" href="%%PREV_SECTION%%" title="%%PREV_SECTION_TITLE%%">
-                        <em class="fa-solid fa-backward"></em>
-                        Latest World News
-                    </a>
-                    &MediumSpace;
-                    <a class="position-relative d-inline m-auto" href="%%NEXT_SECTION%%" title="%%NEXT_SECTION_TITLE%%">
-                        <em class="fa-solid fa-forward"></em>
-                        Next Section
-                    </a>
-                    &MediumSpace;
-                    <a class="position-relative d-inline m-auto" href="%%LAST_SECTION%%" title="%%LAST_SECTION_TITLE%%">
-                        <em class="fa-solid fa-rotate-left"></em>
-                        Last Section
-                </div>
-                <p class="p-2"><a href="/copyright">Copyright</a> &copy; 2022 Paul Capatina-Voila - <a href="/academic">KEA Digital</a></p>
+        <!-- Bottom Section - Footer and Copyright -->
+        <section class="section-bottom modal-content">
+            <!-- Footer navigation and copyright -->
+            <footer class="footer-container modal-footer row flex-row border-0">
+                <a href="%%PREV_SECTION%%" title="%%PREV_SECTION_TITLE%%">
+                    <em class="fa-solid fa-backward"></em>
+                    Latest World News
+                </a>
+                <a href="%%NEXT_SECTION%%" title="%%NEXT_SECTION_TITLE%%">
+                    <em class="fa-solid fa-forward"></em>
+                    Next Section
+                </a>
+                <a href="%%LAST_SECTION%%" title="%%LAST_SECTION_TITLE%%">
+                    <em class="fa-solid fa-rotate-left"></em>
+                    Last Section
+                </a>
+                <!-- Copyright information -->
+                <p class="text-end">
+                    <a href="/copyright">Copyright</a> &copy; 2022<br>
+                    Paul Capatina-Voila
+                </p>
             </footer>
         </section>
 

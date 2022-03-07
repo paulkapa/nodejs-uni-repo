@@ -1,20 +1,48 @@
-<body class="user-select-none">
-    <section class="modal-content">
-        <h1 class="h2 text-center">
-            <a type="button" class="text-muted text-decoration-none" data-bs-toggle="collapse" data-bs-target="#nav-c" aria-controls="nav-c">
-                <em class="fa-solid fa-bars"></em> Welcome to KEA - Full Stack Node.js
+<!-- Body background video -->
+<video class="video-bg" autoplay loop muted>
+    <source src="../../resources/media/blue.mp4" type="video/mp4">
+</video>
+
+<!-- Top Section - Header and Navigation -->
+<section class="section-top modal-content">
+    <!-- Top Section background video -->
+    <video class="video-bg" autoplay loop muted>
+        <source src="../../resources/media/color.mp4" type="video/mp4">
+    </video>
+
+    <!-- Site branding (Node.js Express server initialization code) -->
+    <div id="nav-brand" class="nav-brand navbar-brand collapse multi-collapse">
+        <span class="line0">Node <em class="fa-brands fa-node-js"></em></span><br>
+        <span class="line1">const express = require("express");</span><br>
+        <span class="line2">const app = express();</span><br>
+        <span class="line2">const PORT = process.env.PORT || 3000;</span><br>
+        <span class="line3">app.listen(PORT, () => console.log("Yep"));</span>
+    </div>
+
+    <!-- Header -->
+    <header class="modal-header row flex-row border-0">
+        <!-- Header heading and navigation toggle button -->
+        <h1 class="nav-text navbar-text">
+            <a type="button" title="Toggle Navigation" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-controls="nav-brand nav-external">
+                <em class="nav-btn fa-solid fa-diamond-turn-right"></em>
+                Full Stack Node.js
+                <em class="fa-solid fa-at text-success"></em> KEA
+                <em class="fa-solid fa-exclamation text-success"></em>
             </a>
         </h1>
-        <header id="nav-c" class="nav-c collapse flex-wrap">
-            <a class="nav-link btn btn-toolbar" href="/">Home</a>
-            <a class="nav-link btn" href="/introduction">Introduction</a>
-            <a class="nav-link btn" href="/express-server">Express Server</a>
-            <a class="nav-link btn" href="/serving-html">Serving HTML</a>
-            <a class="nav-link btn" href="/ssr">SSR</a>
-            <a class="nav-link btn" href="/about">About</a>
-            <a class="nav-link btn" href="/about-me">Author</a>
-            <a class="nav-link btn" href="/academic">Academic</a>
-            <a class="nav-link btn" href="/glossary">Glossary</a>
-            <a class="nav-link btn" href="/copyright">Copyright</a>
-        </header>
-    </section>
+
+        <!-- Expandable external navigation and content -->
+        <nav id="nav-external" class="nav-external nav-justified collapse multi-collapse">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/introduction">Introduction</a>
+            <a class="nav-link" href="/express-server">Express Server</a>
+            <a class="nav-link" href="/serving-html">Serving HTML</a>
+            <a class="nav-link" href="/ssr">SSR</a>
+            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/about-me">Author</a>
+            <a class="nav-link" href="/academic">Academic</a>
+            <a class="nav-link" href="/glossary">Glossary</a>
+            <a class="nav-link" href="/copyright">Copyright</a>
+        </nav>
+    </header>
+</section>

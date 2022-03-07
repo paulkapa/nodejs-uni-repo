@@ -1,15 +1,62 @@
-<section class="modal-content">
-    <h1 class="h2 p-2">First Express Server</h1>
-    <P class="p-2">
-        - Callback functions
-        - Clean code / code conventions
-        - Package.json
-        - Importing in Node.js
-        - Body Parsing
-        - Understand advanced things about functions in Javascript including hoisting.
-        - Can argue why clean code and following code conventions is a good idea.
-        - Can write callback functions with different syntax.
-        - Understand package.json. The three responsibilities it fulfills.
-        - Can create a server instance with Express.
+<section class="section-content modal-content">
+    <h1>First Express Server</h1>
+    <p>
+        The basics of JavaScript and Node.js have been explained in the <a href="/introduction">Introduction</a> section. This section will focus on setting up a Node.js Express
+        Server.
     </p>
+    <p>
+        First of all, Node.js needs to be installed. The download page can be found <a href="https://nodejs.org/en/download/" title="https://nodejs.org/en/download/">here</a>.
+        After Node.js is correctly installed and configured, open a terminal in an empty folder named after your project and type:
+    </p>
+    <code class="text-center bg-dark m-auto">npm init</code><br>
+    <img src="../../resources/media/npminit.png" alt="" srcset="">
+    <p>
+        The command allows you to set some details about your project, that will be saved in a <span class="c-1">"package.json"</span> file inside the folder.
+    </p>
+    <p>
+        In order to use express, the dependency needs to be added to your project. Apart form saving the project's information, the <span class="c-1">"package.json"</span> file
+        also saves the dependencies you want to use in your project and declares scripts that define the commands used to start or test your program in different environments such
+        as development or production.
+    </p>
+    <p>
+        To add express, you just have to type:
+        <code class="text-center bg-dark m-auto">npm i express</code><br>
+        The dependency will be added and all the required libraries will be downloaded in a separate folder called <span class="c-2">"node_modules".</span>
+        Another important dependency used primarily for development purposes is nodemon. It allows your app to automatically restart when you change something in your code.
+        <br>To add nodemon as a development dependency, you just have to type:
+    </p>
+    <code class="text-center bg-dark m-auto">npm i --save-dev nodemon</code><br>
+    <p>
+        Now you have to create the entry point of your application, either the default (<span class="c-2">"index.js"</span>) or the main file you decided to set as entry point
+        during the <code class="text-center bg-dark m-auto text-nowrap">npm init</code> command.
+    </p>
+    <p>
+        By adding the following lines to your file, you import express in line 1, and initialize the import in line 2. Line 3 defines a port, either a predefined one, or a port
+        already defined in your environment. The last line allows the application to listen for all requests coming trough the specified port. By default, it will respond with an
+        error message, if no other behaviour is specified.
+        <br><img src="../../resources/media/express1.png" alt="" srcset="">
+    </p>
+    <p>
+        To allow the server to respond to certain requests in certain ways, the following modifications need to be made.
+        <br><img src="../../resources/media/express2.png" alt="" srcset="">
+    </p>
+    <p>
+        To get information from the request, we can either parse the request body, or the request parameters:
+    </p>
+    <ul>
+        <li>
+            Request body:
+            <br><img src="../../resources/media/express3.png" alt="" srcset="">
+            <p>
+                If the values send with the request are valid, then the user is redirected to a login state, otherwise back to the login page.
+            </p>
+        </li>
+        <li>
+            Request parameters:
+            <br><img src="../../resources/media/express4.png" alt="" srcset="">
+            <p>
+                Here only lines 10 and 11 change, so that the values are taken from the paramteres encoded in the url.
+            </p>
+        </li>
+    </ul>
 </section>

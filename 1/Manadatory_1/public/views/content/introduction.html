@@ -1,11 +1,107 @@
-<section class="modal-content">
-    <h1 class="h2 p-2">Node.js Introduction</h1>
-    <p class="p-2">
-        - Intro to Node.js
-        Can explain what Node.js is and how to run files with it.
-
-        - Variables
-        Understand the difference between variable identifiers and which to use.
-        Understand and work with data types in Javascript.
+<section class="section-content modal-content">
+    <h1>Node.js Introduction</h1>
+    <h2>Short description</h2>
+    <p>
+        Node.js® is a JavaScript runtime built on <a href="https://v8.dev/" title="https://v8.dev/"><span class="c-4">Chrome's V8 JavaScript engine</span></a>.
+        Node.js with its default package manager - <a href="https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/"
+            title="https://www.freecodecamp.org/news/npm-vs-npx-whats-the-difference/"><span class="c-5">npm (and npx)</span></a> - allows you to import libraries and gain the
+        ability to develop, deploy, and maintain all kinds of server-like applications, including a web server, which is the topic this site is based around.
     </p>
+    <p>
+        At <a href="https://kea.dk" title="https://kea.dk">KEA</a>, the library we always use when starting a new project is <a href="http://expressjs.com/"
+            title="http://expressjs.com/">express</a>. This library provides easy handling of web requests and client connections, as well as useful ways of proccessing this
+        data.
+    </p>
+    <p>
+        Node.js is very efficient at the task of running the code of these servers because it is asynchronous, meaning that it is executing one task at a time, without
+        necessarily waiting for a response before taking the next step. This way, it will use less system memory while running the code, and will provide fast
+        execution of the code, as well as fast response times due to the lack of complexity that it needs to process all tasks.
+    </p>
+    <p>
+        <span class="c-1" title="The big guys...">Corporate users</span> of Node.js software include GoDaddy, Groupon, IBM, LinkedIn, Microsoft, Netflix, PayPal, Rakuten, SAP,
+        Walmart, Yahoo!, and
+        Amazon Web Services (<a href="https://en.wikipedia.org/wiki/Node.js" title="https://en.wikipedia.org/wiki/Node.js">source</a>).
+    </p>
+
+    <h2>JavaScript</h2>
+    <p>Node.js is a JavaScript runtime, thus it compiles JavaScript files. The JavaScript programming language has the following properties:</p>
+    <ol>
+        <li>
+            <span class="c-4">Variable Declaration</span>
+            <ul>
+                <li><span class="c-5">let</span> - defines a variable that can be modified</li>
+                <li><span class="c-5">const</span> - defines a variable that cannot be modified, and has to be initialized with a value, only once, in the declaration statement
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="c-4">Data Types</span>
+            <p>
+                A value in JavaScript is always of a certain type. For example, a string or a number. There are eight basic data types in JavaScript. We can put any type in a
+                variable. Programming languages that allow such things, such as JavaScript, are called "dynamically typed", meaning that there exist data types, but variables are
+                not bound to any of them.
+            </p>
+            <ul>
+                <li>
+                    <span class="c-2">Number</span>
+                    <br><img src="../../resources/media/number.png" alt="" srcset="">
+                    <p>
+                        The number type represents both integer and floating point numbers.
+                    </p>
+                </li>
+                <li>
+                    <span class="c-2">BigInt</span>
+                    <br><img src="../../resources/media/bigint.png" alt="" srcset="">
+                    <p>
+                        BigInt type was recently added to the language to represent integers of arbitrary length.
+                    </p>
+                </li>
+                <li>
+                    <span class="c-2">String</span>
+                    <br><img src="../../resources/media/string.png" alt="" srcset="">
+                    <p>
+                        A string in JavaScript must be surrounded by quotes. A string may consist of zero characters (be empty), one character or many of them.
+                    </p>
+                </li>
+                <li>
+                    <span class="c-2">Boolean</span>
+                    <br><img src="../../resources/media/boolean.png" alt="" srcset="">
+                    <p>
+                        The boolean type has only two values: true and false.
+                    </p>
+                </li>
+                <li>
+                    <span class="c-2">Null</span>
+                    <p>
+                        The special null value does not belong to any of the types described above.
+                        It forms a separate type of its own which contains only the null value.
+                    </p>
+                </li>
+                <li>
+                    <span class="c-2">Undefined</span>
+                    <p>
+                        The special value undefined also stands apart. It makes a type of its own, just like null.
+                        The meaning of undefined is “value is not assigned”.
+                    </p>
+                </li>
+                <li>
+                    <span class="c-2">Objects and Symbols</span>
+                    <p>
+                        Objects are used to store collections of data and more complex entities.
+                        The symbol type is used to create unique identifiers for objects.
+                    </p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="c-4">Callback functions</span>
+            <p>
+                <img src="../../resources/media/callback.png" alt="" srcset=""><br>
+                Callback functions are what makes Node.Js asynchronous.
+                Using callbacks allows the program to do later processing of the data returned by a function, so that the function
+                can be called again in other I/O operations.
+            </p>
+        </li>
+    </ol>
+    <p>(<a href="https://javascript.info/types" title="https://javascript.info/types"><span class="c-1">source</span></a>)</p>
 </section>
