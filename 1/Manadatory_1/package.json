@@ -1,5 +1,40 @@
 {
-    "dependencies": {
-        "express" : "4.17.3"
-    }
+  "name": "manadatory_1",
+  "version": "1.0.0",
+  "description": "First mandatory project fo the Full Stack Node.js class",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-dev": "nodemon app.js",
+    "start-cross-env": "cross-env PORT=3000 app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulkapa/nodejs-uni-repo.git"
+  },
+  "keywords": [
+    "Node",
+    "JavaScript",
+    "Express",
+    "SSR",
+    "FS",
+    "HTML",
+    "CSS",
+    "Frontend",
+    "Backend"
+  ],
+  "author": "Paul Capatina-Voila",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulkapa/nodejs-uni-repo/issues"
+  },
+  "homepage": "https://github.com/paulkapa/nodejs-uni-repo#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
