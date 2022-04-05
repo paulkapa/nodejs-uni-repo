@@ -1,57 +1,97 @@
+// Express import and initialization.
 const express = require("express");
 const app = express();
+// Fs and path import.
+const path = require("path");
 const fs = require("fs");
-const PORT = process.env.PORT || 3000;
-const __fragments = `${__dirname}/public/views/fragments`;
-const __content = `${__dirname}/public/views/content`;
-const __pages = `${__dirname}/public/views/full_pages`;
 
+// Port declaration.
+const PORT = process.env.PORT || 3000;
+
+// Declaration of static directory.
 app.use(express.static(`public`));
 
+// Directories of HTML fragments and pages.
+const __fragments = `${__dirname}/public/views/fragments`;
+//app.set('fragments', 'views/fragments')
+const __content = `${__dirname}/public/views/content`;
+// app.set('content', 'views/content')
+const __pages = `${__dirname}/public/views/full_pages`;
+// app.set('full_pages', 'views/full_pages')
+
+/**
+ * The content of repeatable HTML fragments.
+ */
+
+//const doc = fs.readFileSync('fragments/doc-head').toString();
 const doc = fs.readFileSync(`${__fragments}/doc-head.html`).toString();
 const nav = fs.readFileSync(`${__fragments}/body-top.html`).toString();
 const footer = fs.readFileSync(`${__fragments}//body-bot.html`).toString();
 
+/**
+ * Page specific content.
+ */
+
 const introduction = fs.readFileSync(`${__content}/introduction.html`).toString();
-const intro_loc = "/introduction";
-const intro_title = "Introduction";
 const express_server = fs.readFileSync(`${__content}/express-server.html`).toString();
-const express_loc = "/express-server";
-const express_title = "Express-Server";
 const serving_html = fs.readFileSync(`${__content}/serving-html.html`).toString();
-const serverHTML_loc = "/serving-html";
-const serverHTML_title = "Serving HTML";
 const ssr = fs.readFileSync(`${__content}/ssr.html`).toString();
-const ssr_loc = "/ssr";
-const ssr_title = "SSR";
 const about = fs.readFileSync(`${__content}/about.html`).toString();
-const about_loc = "/about";
-const about_title = "About";
 const about_me = fs.readFileSync(`${__content}/about-me.html`).toString();
-const aboutme_loc = "/about-me";
-const aboutme_title = "About-Me";
 const glossary = fs.readFileSync(`${__fragments}/glossary.html`).toString();
-const glossary_loc = "/glossary";
-const glossary_title = "Glossary";
 const academic = fs.readFileSync(`${__content}/academic.html`).toString();
-const academic_loc = "/academic";
-const academic_title = "Academic";
 const copyright = fs.readFileSync(`${__fragments}/copyright.html`).toString();
-const copy_loc = "/copyright";
-const copy_title = "Copyright";
 const error = fs.readFileSync(`${__fragments}/error.html`).toString();
+
+/**
+ * Title and location of each page specific content.
+ */
+
+const intro_title = "Introduction";
+const intro_loc = "/introduction";
+const express_title = "Express-Server";
+const express_loc = "/express-server";
+const serverHTML_title = "Serving HTML";
+const serverHTML_loc = "/serving-html";
+const ssr_title = "SSR";
+const ssr_loc = "/ssr";
+const about_title = "About";
+const about_loc = "/about";
+const aboutme_title = "About-Me";
+const aboutme_loc = "/about-me";
+const glossary_title = "Glossary";
+const glossary_loc = "/glossary";
+const academic_title = "Academic";
+const academic_loc = "/academic";
+const copy_title = "Copyright";
+const copy_loc = "/copyright";
 const error_title = "Error";
 
-const __index = fs.readFileSync(`${__pages}/index.html`).toString();
-const __index_loc = "/";
-const __index_title = "Home";
-const __ww_news = fs.readFileSync(`${__pages}/latest-world-news.html`).toString();
-const __ww_news_loc = "/ww-news";
-const __ww_news_title = "Latest World News";
+/**
+ * Full pages content, titles and location.
+ */
 
+const __index = fs.readFileSync(`${__pages}/index.html`).toString();
+const __ww_news = fs.readFileSync(`${__pages}/latest-world-news.html`).toString();
+const __index_title = "Home";
+const __index_loc = "/";
+const __ww_news_title = "Latest World News";
+const __ww_news_loc = "/ww-news";
+
+// Navigation history variables.
 let last_page = intro_loc;
 let last_page_title = intro_title;
 
+/**
+ * Build a view by providing the main content of the page,
+ * @param {*} title
+ * @param {*} content
+ * @param {*} next_section
+ * @param {*} next_section_title
+ * @param {*} prev_section
+ * @param {*} prev_section_title
+ * @returns
+ */
 function buildFragments(title, content, next_section, next_section_title, prev_section, prev_section_title) {
     let doc_rendered = doc.replace("%%DOCUMENT_TITLE%%", title);
     let footer_rendered = footer.replace("%%NEXT_SECTION%%", next_section)
