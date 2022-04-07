@@ -1,0 +1,9 @@
+Usage:
+    -> npm run "script-name"
+
+Scripts:
+    -> Serve Frontend with Express Server:
+        -> "server-prod": "node ../server/app.js",
+        -> "server-dev": "nodemon ../server/app.js"
+    -> Default:
+        -> "start": "sirv public --no-clear"
