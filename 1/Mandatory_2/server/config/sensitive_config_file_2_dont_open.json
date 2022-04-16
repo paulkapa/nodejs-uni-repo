@@ -1,0 +1,17 @@
+{
+    "access_key": "access_key=771ca5372848f4fd53c1ae047ad3b068df0e7c91",
+    "base_url": "https://emoji-api.com/",
+    "get_emojis": "emojis?",
+    "search_string": "emojis?search=%%SEARCH_STRING%%&",
+    "notice": "hey, what are you doing here?",
+    "get_emoji": "emojis/%%EMOJI_NAME%%?",
+    "get_categories": "categories?",
+    "get_category": "categories/%%CATEGORY_NAME%%?",
+    "complete": {
+        "get_emojis": "https://emoji-api.com/emojis?access_key=771ca5372848f4fd53c1ae047ad3b068df0e7c91",
+        "search_emojis": "https://emoji-api.com/emojis?search=%%SEARCH_STRING%%&access_key=771ca5372848f4fd53c1ae047ad3b068df0e7c91",
+        "get_emoji": "https://emoji-api.com/emojis/%%EMOJI_NAME%%?access_key=771ca5372848f4fd53c1ae047ad3b068df0e7c91",
+        "get_categories": "https://emoji-api.com/categories?access_key=771ca5372848f4fd53c1ae047ad3b068df0e7c91",
+        "get_category": "https://emoji-api.com/categories/%%CATEGORY_NAME%%?access_key=771ca5372848f4fd53c1ae047ad3b068df0e7c91"
+    }
+}
