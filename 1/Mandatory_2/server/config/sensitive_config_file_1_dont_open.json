@@ -4,5 +4,55 @@
     "user": "btd6",
     "password": "Tc9XH8O~h6!2",
     "notice": "don't snoop around",
-    "database": "btd6"
+    "database": "btd6",
+    "queries": {
+        "account": {
+            "INSERT": "INSERT INTO account (email, password) VALUES ('%%EMAIL%%', '%%PASSWORD%%')",
+            "SELECT_ID": "SELECT * FROM account WHERE id = %%ID%%",
+            "SELECT_ALL": "SELECT * FROM account",
+            "SELECT_EMAIL": "SELECT * FROM account WHERE email = '%%EMAIL%%'",
+            "UPDATE_EMAIL": "UPDATE account SET email = '%%NEW_EMAIL%%' WHERE email = '%%EMAIL%%'",
+            "UPDATE_PASSWORD": "UPDATE account SET password = '%%NEW_PASSWORD%%' WHERE email = '%%EMAIL%%'",
+            "DELETE": "DELETE FROM account WHERE email = '%%EMAIL%%'"
+        },
+        "session": {
+            "INSERT": "INSERT INTO session (session, data) VALUES ('%%SESSION%%', '%%DATA%%')",
+            "SELECT_ID": "SELECT * FROM session WHERE id = %%ID%%",
+            "SELECT_ALL": "SELECT * FROM session",
+            "SELECT_SESSION": "SELECT * FROM session WHERE session = '%%SESSION%%'",
+            "UPDATE_DATA": "UPDATE session SET data = '%%DATA%%' WHERE session = '%%SESSION%%'",
+            "DELETE": "DELETE FROM session WHERE session = '%%SESSION%%'"
+        },
+        "account_session": {
+            "INSERT": "INSERT INTO account_session (account_id, session_id) VALUES (%%ACCOUNT%%, %%SESSION%%)",
+            "SELECT_ID": "SELECT * FROM account_session WHERE id = %%ID%%",
+            "SELECT_ALL": "SELECT * FROM account_session",
+            "SELECT_ACCOUNT": "SELECT * FROM account_session WHERE account_id = %%ACCOUNT%%",
+            "SELECT_SESSION": "SELECT * FROM account_session WHERE session_id = %%SESSION%%"
+        },
+        "order": {
+            "INSERT": "INSERT INTO order (account_session_id, price, is_placed, is_fulfilled) VALUES (%%ACCOUNT_SESSION_ID%%, %%PRICE%%, %%IS_PLACED%%, %%IF_FULFILLED%%)",
+            "SELECT_ID": "SELECT * FROM order WHERE id = %%ID%%",
+            "SELECT_ALL": "SELECT * FROM order",
+            "SELECT_ACCOUNT_SESSION_ID": "SELECT * FROM order WHERE account_session_id = %%ACCOUNT_SESSION_ID%%",
+            "UPDATE_IS_PLACED": "UPDATE order SET is_placed = %%IS_PLACED%% WHERE id = %%ID%%",
+            "UPDATE_IS_FULFILLED": "UPDATE order SET is_fulfilled = %%IS_FULFILLED%% WHERE id = %%ID%%"
+        },
+        "order_item": {
+            "INSERT": "INSERT INTO order_item (order_id, item_id, count) VALUES (%%ORDER_ID%%, %%ITEM_ID%%, %%COUNT%%)",
+            "SELECT_ID": "SELECT * FROM order_item WHERE id = %%ID%%",
+            "SELECT_ALL": "SELECT * FROM order_item",
+            "SELECT_ORDER_ID": "SELECT * FROM order_item WHERE order_id = %%ORDER_ID%%",
+            "SELECT_ITEM_ID": "SELECT * FROM order_item WHERE item_id = %%AITEM_ID%%",
+            "UPDATE_COUNT": "UPDATE order_item SET count = %%COUNT%% WHERE id = %%ID%%",
+            "DELETE": "DELETE FROM order_items WHERE item_id = %%ITEM_ID%%"
+        },
+        "items": {
+            "INSERT": "INSERT INTO items (item, value, price, stock) VALUES (%%ITEM%%, %%VALUE%%, %%PRICE%%, %%STOCK%%)",
+            "SELECT_ALL": "SELECT * FROM items",
+            "SELECT_ITEM": "SELECT * FROM items WHERE item = '%%ITEM%%'",
+            "UPDATE": "UPDATE items SET stock = %%STOCK%%, price = %%PRICE%% WHERE item = '%%ITEM%%'",
+            "DELETE": "DELETE FROM items WHERE item = '%%ITEM%%'"
+        }
+    }
 }

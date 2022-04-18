@@ -1,16 +1,88 @@
 html,
-body {
+body,
+header,
+main,
+footer,
+section {
+    /*Main Box Sizing and Positioning*/
+    box-sizing: border-box;
     position: relative;
-    width: 100%;
-    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+header,
+footer,
+section {
+    /*Flex*/
+    display: flex;
+    flex-flow: column nowrap;
+
+    justify-content: space-evenly;
+    justify-content: space-around;
+    align-content: space-evenly;
+    align-content: space-around;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 body {
-    color: #333;
-    margin: 0;
-    padding: 8px;
-    box-sizing: border-box;
+    /*User Select*/
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    /*Scrollbar*/
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    /*Font*/
+    color: darkslategrey;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Consolas Mono', monospace;
+
+    /*Text*/
+    text-align: justify;
+    -ms-text-align-last: left;
+    -moz-text-align-last: left;
+    text-align-last: left;
+}
+
+header,
+footer,
+section {
+    width: 100vw;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+footer {
+    border-top: 0.2em inset slateblue;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 1em;
+    font-weight: bold;
+    text-align: left;
+}
+
+p {
+    padding: 0.5em;
 }
 
 a {
@@ -24,44 +96,4 @@ a:hover {
 
 a:visited {
     color: rgb(0, 80, 160);
-}
-
-label {
-    display: block;
-}
-
-input,
-button,
-select,
-textarea {
-    font-family: inherit;
-    font-size: inherit;
-    -webkit-padding: 0.4em 0;
-    padding: 0.4em;
-    margin: 0 0 0.5em 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-}
-
-input:disabled {
-    color: #ccc;
-}
-
-button {
-    color: #333;
-    background-color: #f4f4f4;
-    outline: none;
-}
-
-button:disabled {
-    color: #999;
-}
-
-button:not(:disabled):active {
-    background-color: #ddd;
-}
-
-button:focus {
-    border-color: #666;
 }
