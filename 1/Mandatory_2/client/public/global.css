@@ -24,10 +24,10 @@ section {
     display: flex;
     flex-flow: column nowrap;
 
-    justify-content: space-evenly;
-    justify-content: space-around;
-    align-content: space-evenly;
-    align-content: space-around;
+    justify-content: center;
+    justify-content: center;
+    align-content: center;
+    align-content: center;
 }
 
 body::-webkit-scrollbar {
@@ -52,10 +52,7 @@ body {
     font-family: 'Consolas Mono', monospace;
 
     /*Text*/
-    text-align: justify;
-    -ms-text-align-last: left;
-    -moz-text-align-last: left;
-    text-align-last: left;
+    text-align: center;
 }
 
 header,
@@ -66,10 +63,6 @@ section {
     margin-bottom: 2em;
 }
 
-footer {
-    border-top: 0.2em inset slateblue;
-}
-
 h1,
 h2,
 h3,
@@ -78,7 +71,6 @@ h5,
 h6 {
     padding: 1em;
     font-weight: bold;
-    text-align: left;
 }
 
 p {

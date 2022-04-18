@@ -1,6 +1,6 @@
 <script>
     import { slide } from 'svelte/transition';
-    export let extendable = true;
+    export let current_page;
     $: extended = false;
 </script>
 
@@ -18,20 +18,21 @@
             <span class="nav-item account"><slot name="account">Account</slot></span>
         </nav>
     </div>
+    <div class="site-navigation"><slot name="site-navigation" /></div>
 </header>
-{#if extendable}
-    <span class="toggler" on:click="{() => (extended = !extended)}">
-        {#if extended}
-            <span class="toggle-close"><em class="fa-regular fa-square-caret-up"></em></span>
-        {:else}
-            <span class="toggle-open"><em class="fa-regular fa-square-caret-down"></em></span>
-        {/if}
-    </span>
+{#if current_page == 'products'}
     <section class="external-content-container">
+        {#if extended}
+            <span class="toggle-close" on:click="{() => (extended = !extended)}"><em class="fa-regular fa-square-caret-up"></em></span>
+        {:else}
+            <span class="toggle-open" on:click="{() => (extended = !extended)}"><em class="fa-regular fa-square-caret-down"></em></span>
+        {/if}
         {#if extended}
             <span class="external-content" transition:slide><slot name="external-content">External Content</slot></span>
         {/if}
     </section>
+{:else}
+    <div class="border"></div>
 {/if}
 
 <style>
@@ -66,54 +67,23 @@
         }
     }
 
-    header {
+    header,
+    .external-content-container,
+    .toggle-close,
+    .toggle-open {
         font-size: 1.5em;
     }
 
-    .header-bg {
-        position: absolute;
-        width: 100vw;
-        height: 100%;
-        bottom: 0;
-        background-image: url('../brand.png');
-        background-repeat: repeat;
-        filter: blur(0.3em);
-        z-index: 0;
+    .header-content,
+    .external-content-container,
+    .border {
+        border-bottom: 0.1em solid black;
     }
 
-    .header-content {
-        width: fit-content;
-        margin: 0.2em auto;
-        padding: 1em;
-        justify-self: center;
-        align-self: center;
-        color: green;
-        background-color: rgba(211, 211, 211, 0.9);
-        border: 0.2em solid black;
-        border-radius: 1em;
-        animation: rainbow 5s linear 0s infinite alternate-reverse none;
-        z-index: 1;
-    }
-
-    .header-content:hover {
-        animation: none;
-    }
-
-    .brand-container {
-        width: 100%;
-        margin: 1em auto;
-    }
-
-    nav {
-        display: flex;
-    }
-
-    .toggler {
-        display: flex;
-        position: relative;
-        width: fit-content;
-        margin: 0 1em;
-        font-size: 2em;
+    .toggle-close,
+    .toggle-open,
+    .external-content {
+        margin: 0 auto;
     }
 
     .toggle-close:hover {
@@ -124,7 +94,43 @@
         color: forestgreen;
     }
 
-    .external-content-container {
-        border-bottom: 0.1em solid black;
+    .header-bg {
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        background-image: url('../brand.png');
+        background-repeat: round;
+        filter: blur(0.3em);
+        z-index: 0;
+    }
+
+    .header-content {
+        position: relative;
+        height: 100%;
+        margin: 0 auto;
+        padding: 1em;
+        color: green;
+        border-radius: 1em;
+        animation: rainbow 10s linear 0s infinite alternate-reverse none;
+        z-index: 1;
+    }
+
+    .header-content:hover {
+        animation: none;
+    }
+
+    .brand-container {
+        position: relative;
+        margin: 0 auto;
+        padding: 1em;
+    }
+
+    .brand:hover {
+        filter: drop-shadow(0 0 1em yellow);
+        transition: 500ms;
+    }
+
+    nav {
+        display: flex;
     }
 </style>

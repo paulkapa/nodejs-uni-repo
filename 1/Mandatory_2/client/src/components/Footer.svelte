@@ -45,38 +45,43 @@
         }
     }
 
+    footer {
+        font-size: 1.5em;
+        border-top: 0.2em inset slateblue;
+    }
+
     .footer-content {
-        width: 100%;
-        margin: 0.2em auto;
-        padding: 1em;
-        justify-self: center;
-        align-self: center;
-        text-align: center;
-        color: green;
-        background-color: rgba(211, 211, 211, 0.9);
-        border: 0.2em solid black;
-        border-radius: 1em;
-        z-index: 1;
+        border-bottom: 0.1em solid black;
     }
 
     .footer-content p,
     .footer-content code {
-        font-size: 1.2em;
-        font-weight: bold;
-    }
-
-    .footer-content:hover {
-        animation: rainbow 2s linear 0s infinite alternate-reverse none;
+        margin: 0 auto;
     }
 
     .footer-bg {
         position: absolute;
         width: 100vw;
         height: 100%;
-        bottom: 0;
         background-image: url('../brand.png');
-        background-repeat: repeat;
+        background-repeat: round;
         filter: blur(0.3em);
         z-index: 0;
+    }
+
+    .footer-content {
+        position: relative;
+        height: 100%;
+        margin: 0 auto;
+        padding: 1em;
+        color: green;
+        border-radius: 1em;
+        animation: rainbow 10s linear 0s infinite alternate-reverse none;
+        z-index: 1;
+    }
+
+    .footer-content:hover {
+        animation: none;
+        background-color: rgba(211, 211, 211, 0.9);
     }
 </style>

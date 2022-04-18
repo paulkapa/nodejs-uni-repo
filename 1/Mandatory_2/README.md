@@ -1,6 +1,11 @@
-# General Information - KEA Shop
+# Resources
 
-Initial application prototype can be found [here](https://online.visual-paradigm.com/community/book/kea-shop-w3tqazumg) (Visual Paradigm Online Flipbook).
+I know there is room for alot of improvement. I got stuck with some things, found multiple solutions and finally was not able to choose one single approach.
+
+ - [Visual Paradigm Prototype](https://online.visual-paradigm.com/community/book/kea-shop-w3tqazumg)
+
+# General Information - KEA NFT Shop
+
 ## Startup instructions
 
 ### Production

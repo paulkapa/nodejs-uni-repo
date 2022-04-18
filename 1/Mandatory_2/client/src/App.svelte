@@ -3,13 +3,12 @@
     import Header from './components/Header.svelte';
     import Footer from './components/Footer.svelte';
     import Slideshow from './components/Slideshow.svelte';
-    import Products from './components/Products.svelte';
+    import Product from './components/Product.svelte';
     import Locations from './components/Locations.svelte';
-    import Cart from './components/Cart.svelte';
-    import Account from './components/Account.svelte';
 
     export let title;
-    const session = 'valid_session';
+    let session = 'valid_session';
+    let account = null;
     let nfts_endpoints = {
         base: `${window.location.protocol}//${window.location.host}/api/nft`,
         getAll: `/all?session=${session}`,
@@ -70,61 +69,58 @@
             DELETE: '&action=DELETE&item=%%ITEM%%',
         },
     };
-
-    $: home = true;
-    $: extendable = !home;
+    $: active_pages = {
+        current_page: 'home',
+        previous_page: '',
+        home: true,
+        products: false,
+        product: false,
+        locations: false,
+        cart: false,
+        account: false,
+    };
     $: slideshow_ready = false;
-
-    $: products = false;
-
-    $: locations = false;
-
-    $: cart = false;
-
-    $: account = false;
-
     $: search_string = '';
     $: categories = [];
     $: nfts = [];
     $: platform = [];
 
+    $: product_view = nfts.length == 1;
+    $: products_per_page = product_view ? 1 : 0.01 * nfts.length >= 25 ? 25 : Math.round(0.01 * nfts.length);
+    $: page_number = Math.round(nfts.length / products_per_page) - 1;
+    $: curr_page = 0;
+    $: one_product_index = 0;
+
+    $: log_in_email = '';
+    $: log_in_password = '';
+    $: logedin = false;
+
+    function login() {
+        logedin = log_in_email == platform[0][0].email && log_in_password == platform[0][0].password;
+    }
+
     function getRandomNumber(min, max) {
         return Math.round(min + Math.random() * (max - min));
     }
 
+    function resolvePages() {
+        active_pages.home = active_pages.current_page == 'home';
+        active_pages.products = active_pages.current_page == 'products';
+        active_pages.product = active_pages.current_page == 'product';
+        active_pages.locations = active_pages.current_page == 'locations';
+        active_pages.cart = active_pages.current_page == 'cart';
+        active_pages.account = active_pages.current_page == 'account';
+        active_pages.current_page == 'products' ? (active_pages.products = true) : null;
+        active_pages = active_pages;
+    }
+
     function goToPage(page) {
-        console.log('go to page ' + page);
-        home = false;
-        products = false;
-        locations = false;
-        cart = false;
-        account = false;
-        switch (page) {
-            case 'home': {
-                home = true;
-                break;
-            }
-            case 'products': {
-                products = true;
-                break;
-            }
-            case 'locations': {
-                locations = true;
-                break;
-            }
-            case 'cart': {
-                cart = true;
-                break;
-            }
-            case 'account': {
-                account = true;
-                break;
-            }
-            default: {
-                home = true;
-                break;
-            }
-        }
+        active_pages.previous_page = active_pages.current_page;
+        active_pages[active_pages.previous_page] = false;
+        active_pages.current_page = page;
+        active_pages[active_pages.current_page] = true;
+        active_pages = active_pages;
+        resolvePages();
     }
 
     /**
@@ -175,8 +171,7 @@
         slideshow_ready = true;
 
         const fetch_users = await platformRepository({ table: 'account', action: 'SELECT_ALL', fields: [] });
-        console.log(fetch_users);
-        console.log(platform);
+        console.log(fetch_users[0][0]);
     });
 </script>
 
@@ -184,91 +179,213 @@
     <title>{title}</title>
 </svelte:head>
 
-<Header extendable="{extendable}">
+<Header current_page="{active_pages.current_page}">
     <button type="button" slot="brand" on:click="{() => goToPage('home')}">KEA NFT Shop</button>
     <button type="button" slot="products" on:click="{() => goToPage('products')}">Products</button>
-    <button type="button" slot="locations" on:click="{() => goToPage('locations')}">Locations</button>
+    <button type="button" slot="locations" on:click="{() => goToPage('locations')}">Contact</button>
     <button type="button" slot="cart" on:click="{() => goToPage('cart')}">Cart</button>
     <button type="button" slot="account" on:click="{() => goToPage('account')}">Account</button>
-    <div slot="external-content">This is external content</div>
-</Header>
-
-<section class="main">
-    <h1>Explore the NFT<button type="button" on:click="{() => goToPage('products')}"><code>.collection</code></button>!</h1>
-    {#if products}
-        <section>
-            <Products />
-        </section>
-    {/if}
-    {#if locations}
-        <section>
-            <Locations />
-        </section>
-    {/if}
-    {#if cart}
-        <section>
-            <Cart />
-        </section>
-    {/if}
-    {#if account}
-        <section>
-            <Account />
-        </section>
-    {/if}
-    {#if home}
+    <div slot="external-content">
         <section>
             {#if slideshow_ready}
                 <div class="input-group">
                     <label for="explore">Choose a category:</label>
                     <select id="explore" name="search_string" default="{search_string}" bind:value="{search_string}">
                         {#each categories as category, i (i)}
-                            <option value="{category.slug}">{category.slug}</option>
+                            {#if category.slug != 'component'}
+                                <option value="{category.slug}">{category.slug}</option>
+                            {/if}
                         {/each}
                     </select>
                 </div>
-                <Slideshow await_nfts="{nftRepository('getCategory', search_string || '')}" nfts="{nfts || new Array(0)}" />
+                <p class="results">Found {nfts.length} {nfts.length == 1 ? 'result' : 'results'}!</p>
             {/if}
         </section>
-        <h2>Check out our stores and contact info!</h2>
-        <section>
-            <p>
-                KEA NFT Shop offers plenty of means to get support. You may come at any of the physical <button type="button" on:click="{() => goToPage('locations')}"
-                    ><code>locations...</code></button
+    </div>
+</Header>
+
+<section class="main">
+    <h1>Explore the NFT<button type="button" on:click="{() => goToPage('products')}"><code>.collection</code></button>!</h1>
+    {#if active_pages.product && session == 'valid_session'}
+        <section class="product-view"><Product nft="{nfts[one_product_index]}" i="{one_product_index}" /></section>
+    {/if}
+    {#if active_pages.products && session == 'valid_session'}
+        <section class="products">
+            <section class="controls">
+                <span class="previous" on:click="{() => (curr_page == 0 ? (curr_page = page_number) : (curr_page = curr_page - 1))}"
+                    ><em class="fa-solid fa-arrow-left"></em></span
                 >
-                or you may use the contact information on this site.
-            </p>
+                <span><code>{curr_page}/{page_number} ({nfts.length} NFT's)</code></span>
+                <span class="next" on:click="{() => (curr_page == page_number ? (curr_page = 0) : (curr_page = curr_page + 1))}"><em class="fa-solid fa-arrow-right"></em></span>
+            </section>
+            {#each nfts as nft, i (i)}
+                {#if i >= curr_page * products_per_page && i < (curr_page + 1) * products_per_page}
+                    <button
+                        type="button"
+                        on:click="{() => {
+                            one_product_index = i;
+                            goToPage('product');
+                        }}"><Product nft="{nft}" i="{i}" /></button
+                    >
+                {/if}
+            {/each}
+        </section>
+        <section class="controls">
+            <span
+                class="previous"
+                on:click="{() => {
+                    curr_page == 0 ? (curr_page = page_number) : (curr_page = curr_page - 1);
+                    window.scrollTo(0, 0);
+                }}"><em class="fa-solid fa-arrow-left"></em></span
+            >
+            <span><code>{curr_page}/{page_number} ({nfts.length} NFT's)</code></span>
+            <span
+                class="next"
+                on:click="{() => {
+                    curr_page == page_number ? (curr_page = 0) : (curr_page = curr_page + 1);
+                    window.scrollTo(0, 0);
+                }}"><em class="fa-solid fa-arrow-right"></em></span
+            >
+        </section>
+    {/if}
+    {#if active_pages.locations}
+        <section>
+            <Locations />
+        </section>
+    {/if}
+    {#if session == 'valid_session'}
+        {#if active_pages.cart}
+            <section></section>
+        {/if}
+        {#if active_pages.account}
+            <section></section>
+        {/if}
+        {#if active_pages.home || active_pages.products}
+            <section>
+                {#if slideshow_ready}
+                    <div class="input-group">
+                        <label for="explore">Choose a category:</label>
+                        <select id="explore" name="search_string" default="{search_string}" bind:value="{search_string}">
+                            {#each categories as category, i (i)}
+                                {#if category.slug != 'component'}
+                                    <option value="{category.slug}">{category.slug}</option>
+                                {/if}
+                            {/each}
+                        </select>
+                    </div>
+                    <Slideshow await_nfts="{nftRepository('getCategory', search_string || '')}" nfts="{nfts || new Array(0)}" />
+                {/if}
+            </section>
+            <h2>Check out our stores and contact info!</h2>
+            <section>
+                <p>
+                    KEA NFT Shop offers plenty of means to get support. You may come at any of the established <button type="button" on:click="{() => goToPage('locations')}"
+                        ><code>locations...</code></button
+                    >
+                    or you may use the contact information found on this site.
+                </p>
+            </section>
+        {/if}
+    {/if}
+    {#if active_pages.account}
+        <section class="login">
+            {#if !logedin}
+                <p>Log In to view shop items</p>
+                Details:
+                <ul>
+                    <li>Email: test@platform.com</li>
+                    <li>Password: 1234</li>
+                </ul>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" bind:value="{log_in_email}" />
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" bind:value="{log_in_password}" />
+                </div>
+                <div>
+                    <button
+                        type="button"
+                        on:click="{() => {
+                            login();
+                        }}">Log In</button
+                    >
+                </div>
+            {/if}
+            <div>
+                {#if logedin}
+                    <p style="color: green">Success!</p>
+                    <div>
+                        <p>Account: {platform[0][0].email}</p>
+                        <p>Password: {'*'.repeat(platform[0][0].password.length)}</p>
+                    </div>
+                {:else}
+                    <p style="color: yelloq">Checking details...</p>
+                {/if}
+            </div>
         </section>
     {/if}
 </section>
 
-<Footer />
+<Footer current_page="{active_pages.current_page}" />
 
 <style>
-    .input-group {
-        width: 100%;
-        position: relative;
+    .login {
+        width: unset;
+        display: flex;
+        flex-flow: column nowrap;
         justify-content: center;
         align-content: center;
+    }
+
+    .input-group {
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
         justify-self: center;
         align-self: center;
     }
 
     .input-group label {
+        margin: 0;
         color: darkcyan;
         font-size: 2em;
         font-weight: 700;
         text-align: center;
     }
 
-    .input-group select {
+    .input-group select,
+    .input-group input {
+        margin: 0;
         color: darkgoldenrod;
         font-size: 1.2em;
         border: unset;
         border: 0.2em solid lightskyblue;
     }
 
+    button {
+        opacity: 0.8;
+        padding: 0.2em;
+        border-radius: 0.2em 1em;
+    }
+
     p {
         padding: 1.2em;
         font-weight: bold;
+    }
+
+    .controls {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    .controls * {
+        padding: 0.2em;
+    }
+
+    .product-view,
+    .products {
+        width: 100%;
     }
 </style>

@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import { blur } from 'svelte/transition';
 
+    export let isTrimmed = false;
     export let await_nfts = [];
     export let nfts = [];
 
@@ -44,6 +45,8 @@
         }
     }
 
+    $: notification_alert = false;
+
     onMount(() => {
         setInterval(() => {
             updateSize();
@@ -66,15 +69,27 @@
             <span class="searching"><em class="fa-solid fa-brands fa-searchengin fa-beat-fade"></em></span>
         {:then result}
             {#if result}
-                {#each display as i (i)}
-                    <div in:blur="{{ duration: 1000 }}" class="nft">
-                        <label class="label-visible" for="{nfts[i].slug}">
-                            {(nfts[i].slug + ' NFT').replace(/-/g, ' ').replace(/\w\S*/g, (word) => word.replace(/^\w/, (character) => character.toUpperCase()))}
-                        </label>
-                        <code id="{nfts[i].slug}">{nfts[i].character}</code>
-                        <label class="label-true" for="{nfts[i].slug}" hidden>{nfts[i].slug}</label>
+                {#if !isTrimmed}
+                    <div class="{notification_alert ? 'none' : 'notification'}">
+                        Loaded {results}
+                        {results == 1 ? 'Item' : 'Items'}!
+                        <span
+                            class="close-notification"
+                            on:click="{() => {
+                                notification_alert = true;
+                            }}"><em class="fa-solid fa-x"></em></span
+                        >
                     </div>
-                {/each}
+                    {#each display as i (i)}
+                        <div in:blur="{{ duration: 1000 }}" class="nft">
+                            <label class="label-visible" for="{nfts[i].slug}">
+                                {(nfts[i].slug + ' NFT').replace(/-/g, ' ').replace(/\w\S*/g, (word) => word.replace(/^\w/, (character) => character.toUpperCase()))}
+                            </label>
+                            <code id="{nfts[i].slug}">{nfts[i].character}</code>
+                            <label class="label-true" for="{nfts[i].slug}" hidden>{nfts[i].slug}</label>
+                        </div>
+                    {/each}
+                {/if}
             {:else}
                 <p class="fallback">No results found... Try being more specific!</p>
             {/if}
@@ -82,20 +97,22 @@
             <p class="fallback">Problem encountered... Please reload the page!</p>
         {/await}
     </div>
-    <div class="controls" class:invisible="{!animate}">
-        <span
-            on:click="{() => {
-                backward();
-                interaction = true;
-            }}"><em class="backward fa-solid fa-caret-left"></em></span
-        >
-        <span
-            on:click="{() => {
-                forward();
-                interaction = true;
-            }}"><em class="forward fa-solid fa-caret-right"></em></span
-        >
-    </div>
+    {#if !isTrimmed}
+        <div class="controls" class:invisible="{!animate}">
+            <span
+                on:click="{() => {
+                    backward();
+                    interaction = true;
+                }}"><em class="backward fa-solid fa-caret-left"></em></span
+            >
+            <span
+                on:click="{() => {
+                    forward();
+                    interaction = true;
+                }}"><em class="forward fa-solid fa-caret-right"></em></span
+            >
+        </div>
+    {/if}
 </section>
 
 <style>
@@ -171,5 +188,27 @@
 
     .invisible {
         visibility: hidden;
+    }
+
+    .none {
+        display: none;
+    }
+
+    .notification {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.5em;
+        color: white;
+        border: 0.1em solid blue;
+        border-radius: 1em 0.3em;
+        background-color: green;
+        z-index: 100;
+    }
+
+    .close-notification {
+        position: relative;
+        z-index: inherit;
     }
 </style>
