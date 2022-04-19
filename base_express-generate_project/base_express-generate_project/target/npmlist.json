@@ -1,1 +1,0 @@
-{"version":"0.0.0","name":"base-express-generate-project","dependencies":{"cookie-parser":{"version":"1.4.6"},"debug":{"version":"2.6.9"},"express":{"version":"4.16.4"},"http-errors":{"version":"1.6.3"},"morgan":{"version":"1.9.1"},"pug":{"version":"2.0.0-beta11"},"sequelize":{"version":"6.16.1"},"sqlite3":{"version":"5.0.2"}}}
